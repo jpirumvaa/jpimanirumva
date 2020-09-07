@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>User Profile</title>
+		<link rel="stylesheet" href="./style.css">
+	
+	</head>
+	
+	<body>
+		<div  class="load">
+			<img src="https://apps.tampagov.net/Community_Webapp/images/loader.gif">
+		</div>
+		<div class='log-container'>
+            <nav class='navbar'>
+                <a href="https://github.com/jpirumvaa" target="_blank" class="git"><img src="https://img.icons8.com/fluent/48/000000/github.png"/>View on Github</a>
+                <span class="nav-icon">
+                    <img id="menu" src="https://img.icons8.com/fluent/48/000000/menu--v1.png"/>
+                    <div class="nav-list">
+                        <a href="./index.html">Home</a>
+                        <a href="./projects.html">Projects</a>
+                        <a href="./contact.html">Contact</a>
+                        <a href="./blog.html">Blog</a>
+                        <a class="profi" href="./userProfile.html">My Profile</a>
+                        <a class="logbtn" href="./login.html">Log In</a>
+                        <a href="" id="logoutBtn">Logout</a>
+                        <a class="admin" href="./admin.html"><img src="https://img.icons8.com/color/40/000000/admin-settings-male.png"/></a>
+                    </div>
+                </span>
+            </nav>
+            <div class="user-info">
+                <div class="center">
+                    <div class="user-intro"></div>
+                    <button class="p-btn add">Edit Profile</button>
+                </div>
+                
+                <div class="admin-form prof-form">                
+                    <form id= "form" class="form profile-f">
+                        <h2>Update Your Profile</h2>
+                        <div class="form-control">
+                            <label for="username">Name</label>
+                            <input type="text" class="profile-name" id="name" placeholder="Enter your name">
+                            <small></small>
+                        </div>
+                        <div class="form-control">
+                            <label for="username">Display Name</label>
+                            <input type="text" class="display-name" id="display-name" placeholder="Enter your display name">
+                            <small></small>
+                        </div>
+                        <button>Update Profile</button><br/>	
+                    </form>
+                </div>
+                <div class="full-profile">
+                </div>
+                <div id="map"></div>
+
+            </div>
+            
+            
+            <footer class="foot">
+                <div class="last">
+                    <div class="social-links">
+                        <p>Connect:</p><br>
+                        <a class="face" target="_blank" href="https://www.facebook.com/jeanpierre.imanirumva"><img src="https://img.icons8.com/fluent/48/000000/facebook-new.png"/></a>
+                        <a class="twi" target="_blank" href="https://twitter.com/ishmaelkefa"><img src="https://img.icons8.com/fluent/48/000000/twitter.png"/></a>
+                        <a class="ig" target="_blank" href="https://www.instagram.com/jpirumva/"><img src="https://img.icons8.com/fluent/48/000000/instagram-new.png"/></a>
+                        <a class="you" target="_blank" href="https://www.youtube.com/channel/UCtkjg2ATnJ1uoZ2xD7Go9Ng?view_as=subscriber"><img src="https://img.icons8.com/fluent/48/000000/youtube-play.png"/></a>
+                        <a class="plus" target="_blank" href="tel:+250780450447"><img src="https://img.icons8.com/fluent/48/000000/phone.png"/></a>
+                        <a class="mail" target="_blank" href="mailto:jp.irumva@gmail.com"><img src="https://img.icons8.com/fluent/48/000000/gmail.png"/></i></a>
+                    </div>
+                    <div class="copy">
+                        &copyCopyright 2020, Jean Pierre Imanirumva
+                    </div>			
+                </div>	
+            </footer>
+
+        </div>
+		<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+		<script src="../scripts/fire.js"></script>
+        <script type="module" src="../scripts/userProfile.js"></script>
+        <script src="../scripts/script.js"></script>
+	</script>
+
+	</body>
+
+
+
+</html>

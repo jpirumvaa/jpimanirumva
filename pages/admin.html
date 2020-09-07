@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="./style.css" rel="stylesheet">
+		<title>Jean Pierre Imanirumva</title>
+	</head>
+	<body>
+    <div  class="load">
+        <img src="https://apps.tampagov.net/Community_Webapp/images/loader.gif">
+    </div>
+	<div class="projects-container">
+		<nav class='navbar'>
+			<a href="https://github.com/jpirumvaa" target="_blank" class="git"><img src="https://img.icons8.com/fluent/48/000000/github.png"/>View on Github</a>
+			<span class="nav-icon">
+				<img id="menu" src="https://img.icons8.com/fluent/48/000000/menu--v1.png"/>
+                <div class="nav-list">
+                    <a href="./index.html">Home</a>
+                    <a href="./projects.html">Projects</a>
+                    <a href="./contact.html">Contact</a>
+                    <a href="./blog.html">Blog</a>
+                    <a class="profi" href="./userProfile.html">My Profile</a>
+                    <a class="logbtn" href="./login.html">Log In</a>
+                    <a href="" id="logoutBtn">Logout</a>
+                    <a class="admin" href="./admin.html"><img src="https://img.icons8.com/color/40/000000/admin-settings-male.png"/></a>
+                </div>
+			</span>
+		</nav>
+		<div class="admin-part">
+			<div class='admin-intro'>
+                <div class="center">
+                    <img alt="profile" class="profile" src="../utils/profile.png"/>
+                    <h1>Administrator</h1>
+                </div>                
+                <button class="btn add">Add Article</button>
+                <div class="admin-form">                
+                    <form id= "form" class="form admin-f">
+                        <h2>Fill required information for the article.</h2>
+                        <div class="form-control">
+                            <label for="username">Author</label>
+                            <input type="text" class="author" id="author" placeholder="Enter your name">
+                            <small></small>
+                        </div>
+                        <div class="form-control">
+                            <label for="username">Title</label>
+                            <input type="text" class="article-title" id="title" placeholder="Enter your name">
+                            <small></small>
+                        </div>
+                        <div class="form-control">
+                            <label for="email">Article Avatar</label>
+                            <input type="file" class="avatar" id="avatar">
+                            <small></small>
+                        </div>
+                        <div class="form-control">
+                            <label for="message">Body</label>
+                            <textarea id="body" class="article-body"></textarea>
+                            <small></small>	
+                        </div>
+                        
+                        
+                        <button>Save Article</button><br/>	
+                    </form>
+                </div>
+                <div class="update-form">
+                    <form id= "form" class="form update">
+                        <h2>Fill required information to Update the article.</h2>
+                        <div class="form-control">
+                            <label for="username">Author</label>
+                            <input type="text" class="update-author" id="author" placeholder="Enter your name">
+                            <small></small>
+                        </div>
+                        <div class="form-control">
+                            <label for="username">Title</label>
+                            <input type="text" class="update-article-title" id="title" placeholder="Enter your name">
+                            <small></small>
+                        </div>
+                        <div class="form-control">
+                            <label for="email">Article Avatar</label>
+                            <input type="file" class="update-avatar" id="avatar">
+                            <small></small>
+                        </div>
+                        <div class="form-control">
+                            <label for="message">Body</label>
+                            <textarea id="body" class="update-article-body"></textarea>
+                            <small></small>	
+                        </div>
+                        
+                        
+                        <button>Update Article</button><br/>	
+                    </form>
+                </div>
+            </div>
+            
+            
+			<div class="articles">
+                <table class="articles-part">
+                </table>
+            </div>
+            <div class="messages"></div>
+		</div>
+		
+		<footer class="foot">
+			<div class="last">
+				<div class="social-links">
+					<p>Connect:</p><br>
+					<a class="face" target="_blank" href="https://www.facebook.com/jeanpierre.imanirumva"><img src="https://img.icons8.com/fluent/48/000000/facebook-new.png"/></a>
+					<a class="twi" target="_blank" href="https://twitter.com/ishmaelkefa"><img src="https://img.icons8.com/fluent/48/000000/twitter.png"/></a>
+					<a class="ig" target="_blank" href="https://www.instagram.com/jpirumva/"><img src="https://img.icons8.com/fluent/48/000000/instagram-new.png"/></a>
+					<a class="you" target="_blank" href="https://www.youtube.com/channel/UCtkjg2ATnJ1uoZ2xD7Go9Ng?view_as=subscriber"><img src="https://img.icons8.com/fluent/48/000000/youtube-play.png"/></a>
+					<a class="plus" target="_blank" href="tel:+250780450447"><img src="https://img.icons8.com/fluent/48/000000/phone.png"/></a>
+					<a class="mail" target="_blank" href="mailto:jp.irumva@gmail.com"><img src="https://img.icons8.com/fluent/48/000000/gmail.png"/></i></a>
+				</div>
+				<div class="copy">
+					&copy; Copyright 2020, Jean Pierre Imanirumva
+				</div>			
+			</div>	
+		</footer>	
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+    <script src="../scripts/fire.js"></script>
+    <script src="../scripts/admin.js"></script>
+	<script src="../scripts/script.js"></script>
+	</body>
+
+</html>

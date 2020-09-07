@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Register</title>
+		<link rel="stylesheet" href="./style.css">	
+
+	</head>
+	
+	<body>
+		<div  class="load">
+			<img src="https://apps.tampagov.net/Community_Webapp/images/loader.gif">
+		</div>
+		<div class='log-container'>
+			<nav class='navbar'>
+				<a href="https://github.com/jpirumvaa" target="_blank" class="git"><img src="https://img.icons8.com/fluent/48/000000/github.png"/>View on Github</a>
+				<span class="nav-icon">
+					<img id="menu" src="https://img.icons8.com/fluent/48/000000/menu--v1.png"/>
+					<div class="nav-list">
+						<a href="./index.html">Home</a>
+						<a href="./projects.html">Projects</a>
+						<a href="./contact.html">Contact</a>
+						<a href="./blog.html">Blog</a>
+						<a class="profi" href="./userProfile.html">My Profile</a>
+						<a class="logbtn" href="./login.html">Log In</a>
+						<a href="" id="logoutBtn">Logout</a>
+						<a class="admin" href="./admin.html"><img src="https://img.icons8.com/color/40/000000/admin-settings-male.png"/></a>
+					</div>
+				</span>
+			</nav>
+			<div data-aos="zoom-out" data-aos-duration="1000" class="log-form">
+				<form id= "form" class="form signup-form">
+					<h2>Fill this form to Sign Up</h2>
+					<div class="form-control">
+						<label for="username">Username</label>
+						<input type="text" id="username" class="username" placeholder="Enter your name">
+						<small></small>
+					</div>
+					
+					<div class="form-control">
+						<label for="email">Email</label>
+						<input type="text" id="email" class="email" placeholder="Enter your email">
+						<small></small>
+					</div>
+					
+					<div class="form-control">
+						<label for="password">Password</label>
+						<input type="password" class="password" id="password" placeholder="Enter your password">
+						<small></small>
+					</div>
+					
+					<div class="form-control">
+						<label for="password2">Confirm Password</label>
+						<input type="password" class="password2" id="password confirmation" placeholder="Repeat your password">
+						<small></small>		
+					</div>
+					<button>Submit</button><br/>
+				<p>Already have an account? <a href="login.html" class="link">Log In</a></p>	
+				</form>
+			</div>
+			<footer class="foot">
+				<div class="last">
+					<div class="social-links">
+						<p>Connect:</p><br>
+						<a class="face" target="_blank" href="https://www.facebook.com/jeanpierre.imanirumva"><img src="https://img.icons8.com/fluent/48/000000/facebook-new.png"/></a>
+						<a class="twi" target="_blank" href="https://twitter.com/ishmaelkefa"><img src="https://img.icons8.com/fluent/48/000000/twitter.png"/></a>
+						<a class="ig" target="_blank" href="https://www.instagram.com/jpirumva/"><img src="https://img.icons8.com/fluent/48/000000/instagram-new.png"/></a>
+						<a class="you" target="_blank" href="https://www.youtube.com/channel/UCtkjg2ATnJ1uoZ2xD7Go9Ng?view_as=subscriber"><img src="https://img.icons8.com/fluent/48/000000/youtube-play.png"/></a>
+						<a class="plus" target="_blank" href="tel:+250780450447"><img src="https://img.icons8.com/fluent/48/000000/phone.png"/></a>
+						<a class="mail" target="_blank" href="mailto:jp.irumva@gmail.com"><img src="https://img.icons8.com/fluent/48/000000/gmail.png"/></i></a>
+					</div>
+					<div class="copy">
+						&copyCopyright 2020, Jean Pierre Imanirumva
+					</div>			
+				</div>	
+			</footer>
+		</div>
+		<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+		<script src="../scripts/fire.js"></script>
+		<script type="module" src="../scripts/signup.js"></script>
+	</body>
+
+</html>

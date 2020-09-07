@@ -1,0 +1,87 @@
+{"items":[
+        {
+            "name": "JP's Fake Twitter",
+            "img": "https://jpbrand.netlify.app/projects/twitter.png",
+            "url": "https://kefaketwitter.netlify.app/",
+            "description": "This is a fake twitter developed using React and Redux. A  user can add new tweets, view existing tweets, like tweets, reply to tweets, and reply to replies of the tweets. This App helped to solidify understanding of React and Redux"
+            
+        },
+        {
+            "name": "Would You Rather Game",
+            "img": "https://jpbrand.netlify.app/projects/reads.png",
+            "url": "https://kefamyreads.netlify.app/",
+            "description": "A game developed using React, as UI libray, and Redux, as State Management library. A user can signin, add questions, respond to questions asked by others, and compare his performance with others on Leaderboard."
+        },
+        {
+            "name": "MyReads",
+            "img": "https://jpbrand.netlify.app/projects/twitter.png",
+            "url": "https://kefaketwitter.netlify.app/",
+            "description": "A book library developed using React that enables people to track the books they are reading, they have read, and the ones they wish to read."
+            
+        },
+        {
+            "name": "Buy from Rwanda",
+            "img": "https://jpbrand.netlify.app/projects/buy.png",
+            "url": "https://rwandanproducts.netlify.app/",
+            "description": "An online platform that helps people to buy products made in Rwanda. It is basically built with HTML and CSS."
+            
+        },
+        {
+            "name": "Contacts App",
+            "img": "https://jpbrand.netlify.app/projects/contact.png",
+            "url": "https://github.com/jpirumvaa/Contacts-App",
+            "description": "App developed using ReactJS. This app allows users to keep their contacts in a secure environment"
+            
+        },
+        {
+            "name": "New Year Countdown",
+            "img": "https://jpbrand.netlify.app/projects/year.png",
+            "url": "https://jpirumvaa.github.io/timemnger/",
+            "description": "An app developed using VanillaJS to allow people to count their favorite days. This specificallly allows uses to count down to thier new year parties."
+            
+        },
+        {
+            "name": "Feedback Form",
+            "img": "https://jpbrand.netlify.app/projects/feedback.png",
+            "url": "#",
+            "description": "A form designed to be sent to friends to give me feedback on my behaviors. I designed it to show my mastery of forms in HTML"
+            
+        },
+        {
+            "name": "My Profile",
+            "img": "https://jpbrand.netlify.app/projects/profile.png",
+            "url": "#",
+            "description": "A description of myself aimed at telling people who Jean Pierre Imanirumva is, a summary of his life, and how he got into coding."
+            
+        },
+        {
+            "name": "Sticky Stories",
+            "img": "https://jpbrand.netlify.app/projects/story.png",
+            "url": "https://jpirumvaa.github.io/Stories/",
+            "description": "A sticky story made to ensure that I have mastered HTML, and CSS"
+            
+        },
+        {
+            "name": "My Google",
+            "img": "https://jpbrand.netlify.app/projects/google.png",
+            "url": "https://jpirumvaa.github.io/MyGoogle/",
+            "description": "A landing page of Google built for the purpose of mastering HTML, and CSS.."
+            
+        },
+        {
+            "name": "New Year Countdown",
+            "img": "https://jpbrand.netlify.app/projects/year.png",
+            "url": "https://jpirumvaa.github.io/timemnger/",
+            "description": "An app developed using VanillaJS to allow people to count their favorite days. This specificallly allows uses to count down to thier new year parties."
+            
+        },
+        {
+            "name": "New Year Countdown",
+            "img": "https://jpbrand.netlify.app/projects/year.png",
+            "url": "https://jpirumvaa.github.io/timemnger/",
+            "description": "An app developed using VanillaJS to allow people to count their favorite days. This specificallly allows uses to count down to thier new year parties."
+            
+        }
+        
+    ]
+}
