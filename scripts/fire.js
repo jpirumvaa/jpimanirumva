@@ -28,34 +28,47 @@ var firebaseConfig = {
   const auth= firebase.auth()
   const db=firebase.firestore()
 
+const token= localStorage.getItem('token')
 
-  auth.onAuthStateChanged(user=>{
-    if(user){
-        console.log("Hello from user:", user.uid)
-        db.collection('users').doc(user.uid).get().then(info=>{
-          if(info.data().isAdmin===true){
-            admin.style.display='inline-block'
-            logoBtn.style.display="inline-block"
-            logBtn.style.display= 'none'
-          }else{
-            admin.style.display= 'none' 
-            logoBtn.style.display="inline-block" 
-            logBtn.style.display= 'none'         
+if(token!==""){
+  console.log(token)
+  logoBtn.style.display="inline-block"
+  logBtn.style.display= 'none'
+}else{
+  console.log("No Token available")
+  logoBtn.style.display="none" 
+  logBtn.style.display= "inline-block" 
+}
+
+
+  // auth.onAuthStateChanged(user=>{
+  //   if(user){
+  //       console.log("Hello from user:", user.uid)
+  //       db.collection('users').doc(user.uid).get().then(info=>{
+  //         if(info.data().isAdmin===true){
+  //           admin.style.display='inline-block'
+  //           logoBtn.style.display="inline-block"
+  //           logBtn.style.display= 'none'
+  //         }else{
+  //           admin.style.display= 'none' 
+  //           logoBtn.style.display="inline-block" 
+  //           logBtn.style.display= 'none'         
             
-          }
-        })
-    }else{
-      logoBtn.style.display="none"
-      admin.style.display= 'none' 
-      logBtn.style.display= 'inline-block'
-      profileP.style.display='none'
-    }
-  })
+  //         }
+  //       })
+  //   }else{
+  //     logoBtn.style.display="none"
+  //     admin.style.display= 'none' 
+  //     logBtn.style.display= 'inline-block'
+  //     profileP.style.display='none'
+  //   }
+  // })
 
   logoBtn.addEventListener('click',(e)=>{
     e.preventDefault()
-    auth.signOut().then(()=>{
-        window.location="../pages/login.html"
-        console.log("Signed Out successfully")
-    })
+    localStorage.setItem('token', '')
+    window.location="../pages/login.html"
+    console.log("Signed Out successfully")
+
+    console.log(localStorage.getItem('token'))
   })
