@@ -149,18 +149,19 @@ addForm.addEventListener('submit', e=>{
         dateofPublication: `${publicationTime}`
     }
 
+    const token= localStorage.getItem('token')
+    console.log(token)
+
     const options={
         method: 'POST',
         headers: {
             accept: "application/json",
             "content-type": "application/json",
-            authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpwLml3d3Z2YmJAZ21haWwuY29tIiwidXNlcklkIjoiNWY1NjIyZmMzNjc2NTI0M2UwYWE3MWViIiwiaWF0IjoxNTk5NDgwNjA1LCJleHAiOjE1OTk0OTE0MDV9.BA5o8wP4AG81KWZt1tkzvyq3PQJomsjtL2KlgMw9upc"
+            authorization: token
         },
         body: JSON.stringify(data),      
     }
-    fetch('http://localhost:5000/blogs', options).then(res=>{
-        console.log(data)
-        console.log(res)
+    fetch('https://jpirumvaa-jp-irumva-api-3.glitch.me/blogs', options).then(res=>{
         res.json().then((response)=>{
             console.log(response)
         })
@@ -170,33 +171,15 @@ addForm.addEventListener('submit', e=>{
         imageURLs= []
     }).then(()=>{
         articlesPart.innerHTML=""
-        db.collection('articles').get().then(info=>{
-        setupArticles(info.docs)
-    })
+        fetch('https://jpirumvaa-jp-irumva-api-3.glitch.me/blogs').then(res=>{
+            res.json().then((response)=>{
+                console.log(response.retrievedBlogs)
+                setupArticles(response.retrievedBlogs)
+            })
+        })
     }).catch(e=>{
         console.log(e)
     })
-    //fetch('https://jpirumvaa-jp-irumva-api-2.glitch.me/blogs', options)   
-//         db.collection('articles').add({
-//             title: title.value,
-//             author: author.value,
-//             body: articleBody.value,
-//             avatarURL: imageURLs[0],
-//             likes:[],
-//             comments:[],
-//             date: dateTime,
-//             dateofPublication: publicationTime
-//         }).then(()=>{
-//             alert("Thank you for submitting your form.")
-//             addForm.reset()
-//             imageURLs= []
-//         }).then(()=>{
-//             articlesPart.innerHTML=""
-//             db.collection('articles').get().then(info=>{
-//             setupArticles(info.docs)
-//         })
-//         }).catch((e)=>console.log(e))
-
 })
 
 
@@ -213,8 +196,9 @@ const setupArticles= (data)=>{
     header.innerHTML= articleUI
     articlesPart.appendChild(header)
     data.forEach(item=>{
-        const article= item.data()
-        const articleId= item.id
+        const article= item
+        console.log(article._id)
+        const articleId= item._id
         if(article!=undefined){
             let tr= document.createElement('tr')
             tr.setAttribute('data-id', articleId)
@@ -243,6 +227,19 @@ function deleteItem(e){
     })
 
 }
+//Fetch blogs and display a list of them
+fetch('https://jpirumvaa-jp-irumva-api-3.glitch.me/blogs').then(res=>{
+    res.json().then((response)=>{
+        console.log(response.retrievedBlogs)
+        setupArticles(response.retrievedBlogs)
+    })
+}).then(()=>{
+    container.style.display= 'block'
+    spinner.style.display='none'
+}).catch((e)=>{
+    alert("An error occured. Check your network and try again.")
+    console.log(e)
+})
 
 
 
@@ -284,12 +281,15 @@ function editItem(e){
     })
 }
 
-db.collection('articles').get().then(info=>{
-    setupArticles(info.docs)
-}).then(()=>{
-    container.style.display= 'block'
-    spinner.style.display='none'
-}).catch((e)=>{
-    alert("An error occured. Check your network and try again.")
-    console.log(e)
-})
+
+
+// db.collection('articles').get().then(info=>{
+//     console.log(info.docs)
+//     setupArticles(info.docs)
+// }).then(()=>{
+//     container.style.display= 'block'
+//     spinner.style.display='none'
+// }).catch((e)=>{
+//     alert("An error occured. Check your network and try again.")
+//     console.log(e)
+// })

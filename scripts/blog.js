@@ -141,13 +141,12 @@ const generateId =(e)=>{
     })
 }
 
-// fetch('https://jpirumvaa-jp-irumva-api-1.glitch.me/blogs')
-// .then(res=>res.json()).then(result=>{
-//     setupBlogSummary(result)
-//     console.log(result)
-// })
-db.collection('articles').get().then(info=>{    
-    setupBlogSummary(info.docs)
+
+fetch('https://jpirumvaa-jp-irumva-api-3.glitch.me/blogs').then(res=>{
+    res.json().then((response)=>{
+        console.log(response.retrievedBlogs)
+        setupBlogSummary(response.retrievedBlogs)
+    })
 }).then(()=>{
     container.style.display= 'block'
     spinner.style.display='none'
@@ -155,3 +154,20 @@ db.collection('articles').get().then(info=>{
     alert("An error occured. Check your network and try again.")
     console.log(e)
 })
+
+// fetch('https://jpirumvaa-jp-irumva-api-1.glitch.me/blogs')
+// .then(res=>res.json()).then(result=>{
+//     setupBlogSummary(result)
+//     console.log(result)
+// })
+
+
+// db.collection('articles').get().then(info=>{    
+//     setupBlogSummary(info.docs)
+// }).then(()=>{
+//     container.style.display= 'block'
+//     spinner.style.display='none'
+// }).catch((e)=>{
+//     alert("An error occured. Check your network and try again.")
+//     console.log(e)
+// })

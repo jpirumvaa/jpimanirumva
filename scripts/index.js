@@ -43,7 +43,7 @@ db.collection('projects').get().then(info=>{
 const setupBlogSummary= (data)=>{
     let blogSummaryUI="";
     data.slice(0,2).forEach(item=>{
-        const blogSummary= item.data()
+        const blogSummary= item
         if(blogSummary!=undefined){
             const blSummary=`
 
@@ -60,9 +60,15 @@ const setupBlogSummary= (data)=>{
     summary.innerHTML= blogSummaryUI
 }
 
-db.collection('articles').get().then(info=>{
-    setupBlogSummary(info.docs)
+fetch('https://jpirumvaa-jp-irumva-api-3.glitch.me/blogs').then(res=>{
+    res.json().then((response)=>{
+        console.log(response.retrievedBlogs)
+        setupBlogSummary(response.retrievedBlogs)
+    })
+}).then(()=>{
+    container.style.display= 'block'
+    spinner.style.display='none'
 }).catch((e)=>{
-    alert("Unable to retrieve data. Please, check your network and try again.")
+    alert("An error occured. Check your network and try again.")
     console.log(e)
 })

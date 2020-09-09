@@ -30,29 +30,59 @@ signupForm.addEventListener('submit', function(e) {
     console.log("geolocation services not available")
     }
     console.log(lat, long)
+
+    const data= {
+        email: emailAddress,
+        username: name,
+        password: pass
+      }
+      
+      const options={
+          method: 'POST',
+          headers: {
+              accept: "application/json",
+              "content-type": "application/json"
+          },
+          body: JSON.stringify(data),      
+      }
     pass===secondPass?
-    auth.createUserWithEmailAndPassword(emailAddress, pass).then(userInfo=>{
-        return db.collection('users').doc(userInfo.user.uid).set({
-            name: name,
-            displayName: "",
-            password: pass,
-            email: emailAddress,
-            isAdmin: false,
-            location:{
-                latitude: lat!==undefined?lat:"No latutude",
-                longitude: long!==undefined?lat:"No longitude",
-            }
+        fetch('https://jpirumvaa-jp-irumva-api-3.glitch.me/users/signup', options).then(results=>{
+          results.json().then((response)=>{
+            console.log(response)
         })
     }).then(()=>{
-        signupForm.reset()
-        loginBtn.style.display= 'none'
-        logoutBtn.style.display="inline-block"
-        window.location="../pages/index.html"
-    }).catch((e)=>{
-        console.log("Not able to post information", e)
-        e.message?alert(e.message):
-        alert("Your information was not saved. If you are sure that you have filled the correct information,check your connection and try again later")
-    }):console.log("passwords should match")
+            signupForm.reset()
+            loginBtn.style.display= 'none'
+            logoutBtn.style.display="inline-block"
+            window.location="../pages/index.html"
+        }).catch((e)=>{
+            console.log("Not able to post information", e)
+            e.message?alert(e.message):
+            alert("Your information was not saved. If you are sure that you have filled the correct information,check your connection and try again later")
+        })
+    // auth.createUserWithEmailAndPassword(emailAddress, pass).then(userInfo=>{
+    //     return db.collection('users').doc(userInfo.user.uid).set({
+    //         name: name,
+    //         displayName: "",
+    //         password: pass,
+    //         email: emailAddress,
+    //         isAdmin: false,
+    //         location:{
+    //             latitude: lat!==undefined?lat:"No latutude",
+    //             longitude: long!==undefined?lat:"No longitude",
+    //         }
+    //     })
+    // }).then(()=>{
+    //     signupForm.reset()
+    //     loginBtn.style.display= 'none'
+    //     logoutBtn.style.display="inline-block"
+    //     window.location="../pages/index.html"
+    // }).catch((e)=>{
+    //     console.log("Not able to post information", e)
+    //     e.message?alert(e.message):
+    //     alert("Your information was not saved. If you are sure that you have filled the correct information,check your connection and try again later")
+    // })
+    :console.log("passwords should match")
 
     checkRequired([username, password, password2, email]);
     checkLength(username, 3, 15);
