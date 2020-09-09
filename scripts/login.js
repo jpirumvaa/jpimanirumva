@@ -41,6 +41,7 @@ const options={
       }else{
         console.log(response.token)
         localStorage.setItem('token', `Bearer ${response.token}`)
+        localStorage.setItem('uid', response.userId)
         logForm.reset()
         window.location="../pages/index.html"
       }

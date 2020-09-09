@@ -34,39 +34,28 @@ if(token!==""){
   console.log(token)
   logoBtn.style.display="inline-block"
   logBtn.style.display= 'none'
+  const uid= localStorage.getItem('uid')
+  fetch(`https://jpirumvaa-jp-irumva-api-3.glitch.me/users/profile/${uid}`).then(res=>{
+  res.json().then(results=>{
+    if(results.isAdmin===true){
+      admin.style.display= 'inline-block' 
+    }else{
+      admin.style.display= 'none'  
+    }
+    console.log("Hello Rwanda", results)
+  })  
+  })
 }else{
   console.log("No Token available")
   logoBtn.style.display="none" 
   logBtn.style.display= "inline-block" 
+  admin.style.display= 'none'
 }
-
-
-  // auth.onAuthStateChanged(user=>{
-  //   if(user){
-  //       console.log("Hello from user:", user.uid)
-  //       db.collection('users').doc(user.uid).get().then(info=>{
-  //         if(info.data().isAdmin===true){
-  //           admin.style.display='inline-block'
-  //           logoBtn.style.display="inline-block"
-  //           logBtn.style.display= 'none'
-  //         }else{
-  //           admin.style.display= 'none' 
-  //           logoBtn.style.display="inline-block" 
-  //           logBtn.style.display= 'none'         
-            
-  //         }
-  //       })
-  //   }else{
-  //     logoBtn.style.display="none"
-  //     admin.style.display= 'none' 
-  //     logBtn.style.display= 'inline-block'
-  //     profileP.style.display='none'
-  //   }
-  // })
 
   logoBtn.addEventListener('click',(e)=>{
     e.preventDefault()
     localStorage.setItem('token', '')
+    localStorage.setItem('uid', '')
     window.location="../pages/login.html"
     console.log("Signed Out successfully")
 
