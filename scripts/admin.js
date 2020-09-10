@@ -22,9 +22,7 @@ const spinner= document.querySelector('.load')
 
 const setupMessages= (data)=>{
     let messageUI= `<h2 class="center">Messages</h2>`
-    data.forEach(item=>{
-        const message= item.data()
-        
+    data.forEach(message=>{        
         if(message!=undefined){
             const mess=`
             <div class="message">
@@ -41,9 +39,14 @@ const setupMessages= (data)=>{
 }
 
 
-
-db.collection('messages').get().then(info=>{
-    setupMessages(info.docs)
+fetch('https://jpirumvaa-jp-irumva-api-3.glitch.me/messages').then(res=>{
+    res.json().then(results=>{
+        console.log(results)
+        setupMessages(results)
+    }).catch((e)=>{
+        alert("An error occured. Check your network and try again.")
+        console.log(e)
+    })
 })
 
 var today = new Date();
@@ -150,8 +153,6 @@ addForm.addEventListener('submit', e=>{
     }
 
     const token= localStorage.getItem('token')
-    console.log(token)
-
     const options={
         method: 'POST',
         headers: {
@@ -173,7 +174,6 @@ addForm.addEventListener('submit', e=>{
         articlesPart.innerHTML=""
         fetch('https://jpirumvaa-jp-irumva-api-3.glitch.me/blogs').then(res=>{
             res.json().then((response)=>{
-                console.log(response.retrievedBlogs)
                 setupArticles(response.retrievedBlogs)
             })
         })
@@ -197,7 +197,6 @@ const setupArticles= (data)=>{
     articlesPart.appendChild(header)
     data.forEach(item=>{
         const article= item
-        console.log(article._id)
         const articleId= item._id
         if(article!=undefined){
             let tr= document.createElement('tr')
@@ -207,7 +206,7 @@ const setupArticles= (data)=>{
             const art=`
                     <td class="article-title">${article.title}</td>
                     <td>${article.date}</td>
-                    <td class="center"><img onclick= editItem(${articleId}) class= "edit" src="https://img.icons8.com/pastel-glyph/30/000000/edit.png"/></td>
+                    <td class="center"><img onclick= editItem('${articleId}') class= "edit" src="https://img.icons8.com/pastel-glyph/30/000000/edit.png"/></td>
                     <td class="center"><img onclick= deleteItem(${articleId})  id="${articleId}" class="delete"  src="https://img.icons8.com/color/30/000000/delete-forever.png"/></td>
             `
             tr.innerHTML=art
@@ -230,7 +229,6 @@ function deleteItem(e){
 //Fetch blogs and display a list of them
 fetch('https://jpirumvaa-jp-irumva-api-3.glitch.me/blogs').then(res=>{
     res.json().then((response)=>{
-        console.log(response.retrievedBlogs)
         setupArticles(response.retrievedBlogs)
     })
 }).then(()=>{
@@ -243,31 +241,60 @@ fetch('https://jpirumvaa-jp-irumva-api-3.glitch.me/blogs').then(res=>{
 
 
 
-const editArticle= (data)=>{
+const editArticle= (article)=>{
     adminUpdate.style.display='block'
-    let article= data.data()
-    let id= data.id
+    let id= article._id
     updateAuthor.value= article.author
     updateTitle.value= article.title
     updateAvatar.src= article.avatarURL
     updateArticleBody.value= article.body
+
     updateForm.addEventListener('submit',(e)=>{
         e.preventDefault()
         adminAdd.style.display='none'
-        db.collection('articles').doc(id).update({
+        const data= {
             author:updateAuthor.value,
             body: updateArticleBody.value,
             avatarURL: updateAvatar.src,
             title: updateTitle.value,
-            comments: [],
-            likes: [],
-        }).then(()=>alert("Updated Successfully")).then(()=>{
-            updateForm.reset()
-            articlesPart.innerHTML=""
-            db.collection('articles').get().then(info=>{
-            setupArticles(info.docs)
-            })
-        }).catch((e)=>alert("An error occured. Please, try again"))
+        }
+
+        const token= localStorage.getItem('token')
+        const url= `https://jpirumvaa-jp-irumva-api-3.glitch.me/blogs/${id}`
+        
+        const options={
+            method: 'PUT',
+            headers: {
+                accept: "application/json",
+                "content-type": "application/json",
+                authorization: token,
+                'Access-Control-Allow-Origin': url
+            },
+            body: JSON.stringify(data),      
+        }
+        
+        fetch(url, options).then(res=>{
+                res.json().then((response)=>{
+                    console.log(response)
+                }).then(()=>{
+                    console.log("Hello from my first site naaaaaa")
+                })
+        })
+
+    //     db.collection('articles').doc(id).update({
+    //         author:updateAuthor.value,
+    //         body: updateArticleBody.value,
+    //         avatarURL: updateAvatar.src,
+    //         title: updateTitle.value,
+    //         comments: [],
+    //         likes: [],
+    //     }).then(()=>alert("Updated Successfully")).then(()=>{
+    //         updateForm.reset()
+    //         articlesPart.innerHTML=""
+    //         db.collection('articles').get().then(info=>{
+    //         setupArticles(info.docs)
+    //         })
+    //     }).catch((e)=>alert("An error occured. Please, try again"))
     })
 
 }
@@ -275,10 +302,16 @@ const editArticle= (data)=>{
 
 
 function editItem(e){
-    let id= e.getAttribute('id')
-    db.collection('articles').doc(id).get().then(info=>{
-        editArticle(info)    
+    let id= e
+    console.log(id)
+    fetch(`https://jpirumvaa-jp-irumva-api-3.glitch.me/blogs/${id}`).then(res=>{
+    res.json().then((response)=>{
+        editArticle(response)
     })
+})
+    // db.collection('articles').doc(id).get().then(info=>{
+    //     editArticle(info)    
+    // })
 }
 
 

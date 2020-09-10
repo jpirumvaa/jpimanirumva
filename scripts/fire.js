@@ -31,7 +31,6 @@ var firebaseConfig = {
 const token= localStorage.getItem('token')
 
 if(token!==""){
-  console.log(token)
   logoBtn.style.display="inline-block"
   logBtn.style.display= 'none'
   const uid= localStorage.getItem('uid')
@@ -61,3 +60,11 @@ if(token!==""){
 
     console.log(localStorage.getItem('token'))
   })
+
+const clearUserData= ()=>{
+      setTimeout(()=>{ 
+        localStorage.removeItem("token")
+        localStorage.removeItem("uid")
+    }, 10800000)
+};    
+clearUserData()

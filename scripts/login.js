@@ -13,6 +13,8 @@ const resetEmail= document.querySelector('.reset-email')
 const save= document.querySelector('.save')
 
 
+
+
 logForm.addEventListener('submit', function(e){
   e.preventDefault()
   checkRequired([logEmail, logPassword])

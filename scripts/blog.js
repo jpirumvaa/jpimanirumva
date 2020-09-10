@@ -6,11 +6,11 @@ const spinner= document.querySelector('.load')
 
 
 
-const setupBlog= (data, id)=>{
+
+const setupBlog= (data)=>{
     let blogUI="";
     const blog= data
-    console.log(id) 
-    const blogId= id      
+    const blogId= blog._id    
         if(blog!=undefined){
             const bl=`
             <div class="blog-header">
@@ -57,23 +57,40 @@ const setupBlog= (data, id)=>{
 
 commentForm.addEventListener('submit',(e)=>{
     e.preventDefault()
-    db.collection('comments').add({
+    
+    const data= { 
         commenter: commenterName.value,
         comment: comment.value,
         commentingTo: blogId
-    }).then(()=>{
-        commentForm.reset()
-        db.collection('comments').get().then(info=>{
-            setupComments(info.docs)
-        })
-    }).catch((e)=>console.log(e))
+    }
+
+    const options={
+        method: 'POST',
+        headers: {
+            accept: "application/json",
+            "content-type": "application/json",
+        },
+        body: JSON.stringify(data),      
+    }
+    fetch('https://jpirumvaa-jp-irumva-api-3.glitch.me/comments', options).then(res=>{
+        res.json().then((response)=>{
+            console.log(response)
+        }).then(()=>{
+            commentForm.reset()
+            fetch('https://jpirumvaa-jp-irumva-api-3.glitch.me/comments').then(res=>{
+                res.json().then(results=>{
+                    setupComments(results)
+                })
+            })
+        }).catch((e)=>console.log(e))
+    })
 })
 
 
 const setupComments = (data)=>{
     let ui=`<h2 class="center">Comments</h2>`
     data.forEach(item=>{
-        let blogComment=item.data()       
+        let blogComment=item      
 
         if(blogComment.commentingTo===blogId){
             const cui= `
@@ -89,11 +106,11 @@ const setupComments = (data)=>{
     commentsPart.innerHTML= ui
 }
 
-
-db.collection('comments').get().then(info=>{
-    setupComments(info.docs)
+fetch('https://jpirumvaa-jp-irumva-api-3.glitch.me/comments').then(res=>{
+    res.json().then(results=>{
+        setupComments(results)
+    })
 })
-
 } 
 
 const setupBlogSummary= (data)=>{
@@ -105,7 +122,7 @@ const setupBlogSummary= (data)=>{
             const blSummary=`
                 <div class="blog">
                     <h3>${blogSummary.title}</h3>
-                    <p>${blogSummary.body.slice(0, 300)}.......<button class='btn c-btn' onclick="generateId(${blogId})" id=${blogId}>Continue Reading</button></p>
+                    <p>${blogSummary.body.slice(0, 300)}.......<button class='btn c-btn' onclick="generateId('${blogId}')" id=${blogId}>Continue Reading</button></p>
                     <div class="likes">
                         <div>
                             <img src="https://img.icons8.com/carbon-copy/20/000000/like--v1.png"/>
@@ -126,19 +143,12 @@ const setupBlogSummary= (data)=>{
     summary.innerHTML= blogSummaryUI
 }
 
-const generateId =(e)=>{
-    let id= e.getAttribute('id')
-     console.log(id)
-    // const url= `https://jpirumvaa-jp-irumva-api-1.glitch.me/blogs/${id}`
-    // console.log(url)
-    // fetch(url)
-    // .then(res=>res.json()).then(result=>{
-    //     setupBlog(result, id)
-    //     console.log(result)
-    // })
-    db.collection('articles').doc(id).get().then(info=>{
-        setupBlog(info, id)
-    })
+
+const generateId =(id)=>{   
+    const url= `https://jpirumvaa-jp-irumva-api-3.glitch.me/blogs/${id}`
+    fetch(url).then(res=>res.json().then(result=>{
+        setupBlog(result)
+    }))
 }
 
 
@@ -154,20 +164,3 @@ fetch('https://jpirumvaa-jp-irumva-api-3.glitch.me/blogs').then(res=>{
     alert("An error occured. Check your network and try again.")
     console.log(e)
 })
-
-// fetch('https://jpirumvaa-jp-irumva-api-1.glitch.me/blogs')
-// .then(res=>res.json()).then(result=>{
-//     setupBlogSummary(result)
-//     console.log(result)
-// })
-
-
-// db.collection('articles').get().then(info=>{    
-//     setupBlogSummary(info.docs)
-// }).then(()=>{
-//     container.style.display= 'block'
-//     spinner.style.display='none'
-// }).catch((e)=>{
-//     alert("An error occured. Check your network and try again.")
-//     console.log(e)
-// })
